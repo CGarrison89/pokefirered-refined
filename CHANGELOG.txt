@@ -1,0 +1,14 @@
+To-Do
+-----
+Change starters and rival lineups:
+    Bulbasaur -> Horsea
+    Squirtle -> Cubone
+    Charmander -> Voltorb
+
+Done
+----
+
+    v0.0.1
+        Build vanilla rom.
+    v0.1.0
+        Enable national dex immediately.
