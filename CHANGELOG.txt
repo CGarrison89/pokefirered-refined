@@ -1,9 +1,43 @@
 To-Do
 -----
 Change starters and rival lineups:
-    Bulbasaur -> Horsea
+    Bulbasaur -> Psyduck
     Squirtle -> Cubone
     Charmander -> Voltorb
+        data\maps\PalletTown_ProfessorOaksLab\scripts.inc
+            PalletTown_ProfessorOaksLab_EventScript_BulbasaurBall
+            PalletTown_ProfessorOaksLab_EventScript_SquirtleBall
+            PalletTown_ProfessorOaksLab_EventScript_CharmanderBall
+        src\field_specials.c
+            sStarterSpecies[]
+            sCapeBrinkCompatibleSpecies[]
+        src\wild_pokemon_area.c
+            sRoamerPairs[]
+        src\data\trainer_parties.h
+            sParty_RivalOaksLabSquirtle[]
+            sParty_RivalOaksLabBulbasaur[]
+            sParty_RivalOaksLabCharmander[]
+            sParty_RivalRoute22EarlySquirtle[]
+            sParty_RivalRoute22EarlyBulbasaur[]
+            sParty_RivalRoute22EarlyCharmander[]
+            sParty_RivalCeruleanSquirtle[]
+            sParty_RivalCeruleanBulbasaur[]
+            sParty_RivalCeruleanCharmander[]
+            sParty_RivalSsAnneSquirtle[]
+            sParty_RivalSsAnneBulbasaur[]
+            sParty_RivalSsAnneCharmander[]
+            sParty_RivalPokemonTowerSquirtle[]
+            sParty_RivalPokemonTowerBulbasaur[]
+            sParty_RivalPokemonTowerCharmander[]
+            sParty_RivalSilphSquirtle[]
+            sParty_RivalSilphBulbasaur[]
+            sParty_RivalSilphCharmander[]
+            sParty_RivalRoute22LateSquirtle[]
+            sParty_RivalRoute22LateBulbasaur[]
+            sParty_RivalRoute22LateCharmander[]
+            sParty_ChampionFirstSquirtle[]
+            sParty_ChampionFirstBulbasaur[]
+            sParty_ChampionFirstCharmander[]
 
 Done
 ----

@@ -1517,9 +1517,9 @@ void ForcePlayerToStartSurfing(void)
 }
 
 static const u16 sStarterSpecies[] = {
-    SPECIES_BULBASAUR,
-    SPECIES_SQUIRTLE,
-    SPECIES_CHARMANDER
+    SPECIES_PSYDUCK,
+    SPECIES_CUBONE,
+    SPECIES_VOLTORB
 };
 
 static u16 GetStarterSpeciesById(u16 idx)
@@ -2211,9 +2211,9 @@ void StopPokemonLeagueLightingEffectTask(void)
 }
 
 static const u8 sCapeBrinkCompatibleSpecies[] = {
-    SPECIES_VENUSAUR,
-    SPECIES_CHARIZARD,
-    SPECIES_BLASTOISE
+    SPECIES_GOLDUCK,
+    SPECIES_ELECTRODE,
+    SPECIES_MAROWAK
 };
 
 bool8 CapeBrinkGetMoveToTeachLeadPokemon(void)
