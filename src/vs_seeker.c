@@ -849,19 +849,10 @@ static void Task_VsSeeker_3(u8 taskId)
 
 static u8 CanUseVsSeeker(void)
 {
-    u8 vsSeekerChargeSteps = gSaveBlock1Ptr->trainerRematchStepCounter;
-    if (vsSeekerChargeSteps == 100)
-    {
         if (GetRematchableTrainerLocalId() == 0xFF)
             return VSSEEKER_NO_ONE_IN_RANGE;
         else
             return VSSEEKER_CAN_USE;
-    }
-    else
-    {
-        TV_PrintIntToStringVar(0, 100 - vsSeekerChargeSteps);
-        return VSSEEKER_NOT_CHARGED;
-    }
 }
 
 static u8 GetVsSeekerResponseInArea(const struct RematchData * vsSeekerData)
