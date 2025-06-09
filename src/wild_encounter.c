@@ -110,8 +110,22 @@ static u8 ChooseWildMonIndex_WaterRock(void)
         return 2;
     else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_2 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_3)
         return 3;
-    else
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_3 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_4)
         return 4;
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_4 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_5)
+        return 5;
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_5 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_6)
+        return 6;
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_6 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_7)
+        return 7;
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_7 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_8)
+        return 8;
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_8 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_9)
+        return 9;
+    else if (rand >= ENCOUNTER_CHANCE_WATER_MONS_SLOT_9 && rand < ENCOUNTER_CHANCE_WATER_MONS_SLOT_10)
+        return 10;
+    else
+        return 11;
 }
 
 static u8 ChooseWildMonIndex_Fishing(u8 rod)
@@ -125,40 +139,47 @@ static u8 ChooseWildMonIndex_Fishing(u8 rod)
     case OLD_ROD:
         if (rand < ENCOUNTER_CHANCE_FISHING_MONS_OLD_ROD_SLOT_0)
             wildMonIndex = 0;
-        else
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_OLD_ROD_SLOT_0 && rand < ENCOUNTER_CHANCE_FISHING_MONS_OLD_ROD_SLOT_1)
             wildMonIndex = 1;
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_OLD_ROD_SLOT_1 && rand < ENCOUNTER_CHANCE_FISHING_MONS_OLD_ROD_SLOT_2)
+            wildMonIndex = 2;
         break;
     case GOOD_ROD:
-        if (rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_2)
-            wildMonIndex = 2;
-        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_2 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3)
+        if (rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3)
             wildMonIndex = 3;
         if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_4)
             wildMonIndex = 4;
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_4 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_5)
+            wildMonIndex = 5;
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_5 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_6)
+            wildMonIndex = 6;
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_6 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_7)
+            wildMonIndex = 7;
         break;
     case SUPER_ROD:
-        if (rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_5)
-            wildMonIndex = 5;
-        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_5 && rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_6)
-            wildMonIndex = 6;
-        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_6 && rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_7)
-            wildMonIndex = 7;
-        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_7 && rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_8)
+        if (rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_8)
             wildMonIndex = 8;
         if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_8 && rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_9)
             wildMonIndex = 9;
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_9 && rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_10)
+            wildMonIndex = 10;
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_10 && rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_11)
+            wildMonIndex = 11;
         break;
     }
     return wildMonIndex;
 }
 
-static u8 ChooseWildMonLevel(const struct WildPokemon * info)
+static u8 ChooseWildMonLevel(const struct WildPokemon *info)
 {
     u8 lo;
     u8 hi;
-    u8 mod;
-    u8 res;
-    if (info->maxLevel >= info->minLevel)
+    u8 range;
+    u8 roll1;
+    u8 roll2;
+    u8 avg;
+
+    if (info->minLevel < info->maxLevel)
     {
         lo = info->minLevel;
         hi = info->maxLevel;
@@ -168,9 +189,16 @@ static u8 ChooseWildMonLevel(const struct WildPokemon * info)
         lo = info->maxLevel;
         hi = info->minLevel;
     }
-    mod = hi - lo + 1;
-    res = Random() % mod;
-    return lo + res;
+
+    range = hi - lo + 1;
+
+    if (range == 1)
+        return lo;
+
+    // Average two rolls for a triangular distribution
+    avg = (Random() % range + Random() % range) / 2;
+
+    return lo + avg;
 }
 
 static u16 GetCurrentMapWildMonHeaderId(void)
