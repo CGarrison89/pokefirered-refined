@@ -1148,11 +1148,6 @@ static void Cmd_ppreduce(void)
     {
         gProtectStructs[gBattlerAttacker].notFirstStrike = 1;
 
-        if (gBattleMons[gBattlerAttacker].pp[gCurrMovePos] > ppToDeduct)
-            gBattleMons[gBattlerAttacker].pp[gCurrMovePos] -= ppToDeduct;
-        else
-            gBattleMons[gBattlerAttacker].pp[gCurrMovePos] = 0;
-
         if (MOVE_IS_PERMANENT(gBattlerAttacker, gCurrMovePos))
         {
             gActiveBattler = gBattlerAttacker;
@@ -2899,7 +2894,6 @@ static void Cmd_tryfaintmon(void)
             {
                 u8 moveIndex = *(gBattleStruct->chosenMovePositions + gBattlerAttacker);
 
-                gBattleMons[gBattlerAttacker].pp[moveIndex] = 0;
                 BattleScriptPush(gBattlescriptCurrInstr);
                 gBattlescriptCurrInstr = BattleScript_GrudgeTakesPp;
                 gActiveBattler = gBattlerAttacker;
@@ -7965,7 +7959,6 @@ static void Cmd_tryspiteppreduce(void)
 
             PREPARE_BYTE_NUMBER_BUFFER(gBattleTextBuff2, 1, ppToDeduct)
 
-            gBattleMons[gBattlerTarget].pp[i] -= ppToDeduct;
             gActiveBattler = gBattlerTarget;
 
             // if (MOVE_IS_PERMANENT(gActiveBattler, i)), but backwards
