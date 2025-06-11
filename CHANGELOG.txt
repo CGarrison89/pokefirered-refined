@@ -38,6 +38,9 @@ Change starters and rival lineups:
             sParty_ChampionFirstSquirtle[]
             sParty_ChampionFirstBulbasaur[]
             sParty_ChampionFirstCharmander[]
+            sParty_ChampionRematchSquirtle[]
+            sParty_ChampionRematchBulbasaur[]
+            sParty_ChampionRematchCharmander[]
 
 Done
 ----
@@ -46,3 +49,14 @@ Done
         Build vanilla rom.
     v0.1.0
         Enable national dex immediately.
+        Ensure that running is allowed in all maps
+    v1.0.0
+        Randomized pokemon
+        Modified EncounterSlot setup to allow for 12 pokemon in all encounter methods
+        Modified EncounterSlot chances to make all 12 pokemon more evenly represented
+        Modified level calculation to use triangular distribution so that extreme levels are outliers
+        Changed out starters and move sets for rival
+        Made TMs infinitely reusable
+        Made moves use no pp
+        Doubled XP yield from defeating pokemon
+        VS Seeker doesn't need to recharge
