@@ -91,9 +91,6 @@ void PressurePPLose(u8 target, u8 attacker, u16 move)
     if (moveIndex == MAX_MON_MOVES)
         return;
 
-    if (gBattleMons[attacker].pp[moveIndex] != 0)
-        gBattleMons[attacker].pp[moveIndex]--;
-
     if (MOVE_IS_PERMANENT(attacker, moveIndex))
     {
         gActiveBattler = attacker;
@@ -120,8 +117,6 @@ void PressurePPLoseOnUsingImprison(u8 attacker)
             if (j != MAX_MON_MOVES)
             {
                 imprisonPos = j;
-                if (gBattleMons[attacker].pp[j] != 0)
-                    gBattleMons[attacker].pp[j]--;
             }
         }
     }
@@ -151,8 +146,6 @@ void PressurePPLoseOnUsingPerishSong(u8 attacker)
             if (j != MAX_MON_MOVES)
             {
                 perishSongPos = j;
-                if (gBattleMons[attacker].pp[j] != 0)
-                    gBattleMons[attacker].pp[j]--;
             }
         }
     }
